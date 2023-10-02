@@ -1,7 +1,8 @@
 import express, { Application } from "express";
-import dontenv from "dotenv";
-
-dontenv.config();
+import { config } from "../config/config.nosql.mongodb";
+import http from 'http';
+import routeProgramBlock from '../routes/route.ProgramBlock';
+import routeSchedule from '../routes/route.Schedule';
 
 export class App{
 
@@ -10,19 +11,22 @@ export class App{
     constructor(){
         this.app = express();
         this.settings();
+        this.routes()
     }
     settings(){
-        const SERVER_PORT = process.env.SERVER_PORT
-            ? Number(process.env.SERVER_PORT)
-            : 3030;
-        this.app.set(`port`, SERVER_PORT);
+        const serverPort = http.createServer(this.app).listen(config.Server.port, () =>
+        console.info(`Server is running on port ${config.Server.port}.`)
+        );
+        this.app.set(`port`, serverPort);
     }
-    routes(){}
+    routes(){
+        this.app.use('/ProgramBlock', routeProgramBlock);
+        this.app.use('/Schedule', routeSchedule);
+    }
     middleware(){
 
     }
-    async listen(){
+    async listen() {
         await this.app.listen(this.app.get("port"));
-        console.log("Server on port: ", this.app.get("port"));
-    }
+      }
 }
