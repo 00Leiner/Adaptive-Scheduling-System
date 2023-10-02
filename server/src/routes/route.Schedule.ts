@@ -1,7 +1,7 @@
 import express from "express";
 import { createScheduleController,readScheduleController,readAllScheduleController,updateScheduleController,deleteScheduleController } from "../controllers/controller.Schedule";
 import { Schemas, ValidateSchema } from "../middleware/middleware.ValidateSchema";
-import constant from '../utils/constant.route.Schedule';
+import constant from '../utils/constant.routes.Schedule';
 
 const router = express.Router();
 

@@ -70,15 +70,15 @@ export async function readAllScheduleController(req: Request, res: Response){
 export async function updateScheduleController(req: Request, res: Response){
   try{ const scheduleID = req.params.scheduleID; 
     const schedule = await Schedule.findById(scheduleID)
-        if (schedule) {
-          schedule.set(req.body);
-          return schedule
-            .save()
-            .then((schedule) => res.status(200).json({ schedule })) // output
-            .catch((error) => res.status(500).json({ error })); // error
-        }else {
-          return res.status(404).json({ message: "Not found" })// not exist
-        };
+        
+    if (schedule) {
+      schedule.set(req.body);
+      const updateSchedule = await schedule.save();
+      return res.status(200).json({ updateSchedule });
+    } else {
+      return res.status(404).json({ message: "Not found" });
+    }
+
   }catch(error) {
     res.status(500).json({ error })// error
   }; 

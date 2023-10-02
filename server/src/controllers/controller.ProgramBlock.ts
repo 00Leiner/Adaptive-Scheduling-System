@@ -28,7 +28,7 @@ export async function createProgramBlockController(req: Request, res: Response){
   } catch (error) {
     res.status(500).json({ error });
   }
-}
+};
 
 /** read specific program block */
 export async function readProgramBlockController(req: Request, res: Response){
@@ -43,7 +43,7 @@ export async function readProgramBlockController(req: Request, res: Response){
   } catch (error) {
     res.status(500).json({ error });
   }
-}
+};
 
 /** read all program block that exist */
 export async function readAllProgramBlockController(req: Request, res: Response) {
@@ -54,7 +54,7 @@ export async function readAllProgramBlockController(req: Request, res: Response)
   } catch (error) {
     res.status(500).json({ error }); // Handle errors and send an error response
   }
-}
+};
 
 /** update program block details */
 export async function updateProgramBlockController(req: Request, res: Response){
@@ -64,13 +64,12 @@ export async function updateProgramBlockController(req: Request, res: Response){
      
         if (programBlock) {
           programBlock.set(req.body);
-          return programBlock
-            .save()
-            .then((programBlock) => res.status(200).json({ programBlock })) // output
-            .catch((error) => res.status(500).json({ error })); // error
-        }else {
-          return res.status(404).json({ message: "Not found" })// not exist
+          const updateProgramBlock = await programBlock.save();
+          return res.status(200).json({ updateProgramBlock });
+        } else {
+          return res.status(404).json({ message: "Not found" });
         }
+
       }catch (error) {
         res.status(500).json({ error });
       }
