@@ -1,8 +1,8 @@
 //Schedule
 const create = "/create/newSchedule/data";
-const read = "/:scheduleID/:program-:block/view/data";
+const read = "/:program-:block/view/data/:scheduleID";
 const readAll = "/view/all/data";
-const update = "/:scheduleID/:program-:block/update/data";
-const remove= "/:scheduleID/:program-:block/deleted/data";
+const update = "/:program-:block/update/data/:scheduleID";
+const remove= "/:program-:block/deleted/data/:scheduleID";
 
 export default {create,read,readAll,update,remove};

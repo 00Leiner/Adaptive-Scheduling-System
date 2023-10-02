@@ -1,8 +1,8 @@
 //Room
 const create = "/create/newRoom/data";
-const read = "/:roomID/:room/view/data";
+const read = "/:room/view/data/:roomID";
 const readAll = "/view/all/data";
-const update = "/:roomID/:room/update/data";
-const remove= "/:roomID/:room/deleted/data";
+const update = "/:room/update/data/:roomID";
+const remove= "/:room/deleted/data/:roomID";
 
 export default {create,read,readAll,update,remove};

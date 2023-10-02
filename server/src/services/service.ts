@@ -4,6 +4,9 @@ import http from 'http';
 import routeProgramBlock from '../routes/route.ProgramBlock';
 import routeSchedule from '../routes/route.Schedule';
 import routeRoom from '../routes/route.Room';
+import routeTeacher from '../routes/route.Teacher';
+import routeCourses from '../routes/route.Courses';
+import routeUser from '../routes/route.User'
 
 export class App{
 
@@ -23,16 +26,13 @@ export class App{
                 resolve();
             });
         });
-        this.app.set(`port`, config.Server.port);
     }
     routes(){
         this.app.use('/ProgramBlock', routeProgramBlock);
         this.app.use('/Schedule', routeSchedule);
         this.app.use('/Room', routeRoom);
+        this.app.use('/Teacher', routeTeacher);
+        this.app.use('/Courses', routeCourses);
+        this.app.use('/User', routeUser);
     }
-    middleware(){
-    }
-    async listen() {
-        await this.app.listen(this.app.get("port"));
-      }
 }

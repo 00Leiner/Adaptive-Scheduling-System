@@ -1,7 +1,7 @@
 import express from "express";
 import { createProgramBlockController, readProgramBlockController,readAllProgramBlockController,updateProgramBlockController,deleteProgramBlockController } from "../controllers/controller.ProgramBlock";
 import { Schemas, ValidateSchema } from "../middleware/middleware.ValidateSchema";
-import constant from '../utils/constant.routes.Programblock'
+import constant from '../utils/constant.routes.ProgramBlock'
 
 const router = express.Router();
 

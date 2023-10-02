@@ -1,8 +1,8 @@
 //ProgramBlock
 const create = "/create/newProgramBlock/data";
-const read = "/:programBlockID/:program-:block/view/data";
+const read = "/:program-:block/view/data/:programBlockID";
 const readAll = "/view/all/data";
-const update = "/:programBlockID/:program-:block/update/data";
-const remove= "/:programBlockID/:program-:block/deleted/data";
+const update = "/:program-:block/update/data/:programBlockID";
+const remove= "/:program-:block/deleted/data/:programBlockID";
 
 export default {create,read,readAll,update,remove};
