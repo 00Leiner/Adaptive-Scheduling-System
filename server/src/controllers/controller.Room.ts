@@ -24,6 +24,7 @@ export async function createRoomController(req: Request, res: Response){
     res.status(201).json({ room: savedRoom });
   } catch (error) {
     res.status(500).json({ error });
+    res.render('error', { error: error });
   }
 };
 
@@ -38,6 +39,7 @@ export async function readRoomController(req: Request, res: Response){
       
   } catch (error) {
     res.status(500).json({ error });
+    res.render('error', { error: error });
   }
 };
 
@@ -48,6 +50,7 @@ export async function readAllRoomController(req: Request, res: Response) {
     res.status(200).json({ rooms }); 
   } catch (error) {
     res.status(500).json({ error }); 
+    res.render('error', { error: error });
   }
 };
 
@@ -64,7 +67,8 @@ export async function updateRoomController(req: Request, res: Response) {
       return res.status(404).json({ message: "Not found" });
     }
   } catch (error) {
-    return res.status(500).json({ error });
+    res.status(500).json({ error });
+    res.render('error', { error: error });
   }
 };
 
@@ -75,5 +79,8 @@ export async function deleteRoomController(req: Request, res: Response){
       return await Room.findByIdAndDelete(roomID) 
           ? res.status(201).send()
           : res.status(404).json({ message: " Not found" })
-  }catch(error){ res.status(500).json({ error })};
+  }catch(error){ 
+    res.status(500).json({ error })
+    res.render('error', { error: error });
+};
 };

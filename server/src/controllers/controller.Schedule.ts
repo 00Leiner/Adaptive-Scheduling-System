@@ -37,6 +37,7 @@ export async function createScheduleController(req: Request, res: Response){
   res.status(201).json({ schedule: savedschedule });
   }catch(error){
     res.status(500).json({ error }); //error
+    res.render('error', { error: error });
   };
 };
 
@@ -52,6 +53,7 @@ export async function readScheduleController(req: Request, res: Response){
   
     }catch(error){
       res.status(500).json({ error });
+      res.render('error', { error: error });
     }; // show error
 };
 
@@ -63,6 +65,7 @@ export async function readAllScheduleController(req: Request, res: Response){
     res.status(200).json({ schedule });// show output
   } catch(error){
     res.status(500).json({ error });// hold and show error
+    res.render('error', { error: error });
   }; 
 };
 

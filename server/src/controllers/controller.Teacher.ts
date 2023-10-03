@@ -27,6 +27,7 @@ export async function createTeacherController(req: Request, res: Response){
     res.status(201).json({ teacher: savedTeacher });
   } catch (error) {
     res.status(500).json({ error });
+    res.render('error', { error: error });
   }
 };
 
@@ -41,6 +42,7 @@ export async function readTeacherController(req: Request, res: Response){
       
   } catch (error) {
     res.status(500).json({ error });
+    res.render('error', { error: error });
   }
 };
 
@@ -51,6 +53,7 @@ export async function readAllTeacherController(req: Request, res: Response) {
     res.status(200).json({ teachers }); 
   } catch (error) {
     res.status(500).json({ error }); 
+    res.render('error', { error: error });
   }
 };
 
@@ -67,7 +70,8 @@ export async function updateTeacherController(req: Request, res: Response) {
       return res.status(404).json({ message: "Not found" });
     }
   } catch (error) {
-    return res.status(500).json({ error });
+    res.status(500).json({ error });
+    res.render('error', { error: error });
   }
 };
 
@@ -77,5 +81,8 @@ export async function deleteTeacherController(req: Request, res: Response){
       return await Teacher.findByIdAndDelete(teacherID) 
           ? res.status(201).send()
           : res.status(404).json({ message: " Not found" })
-  }catch(error){ res.status(500).json({ error })};
+  }catch(error){ 
+    res.status(500).json({ error })
+    res.render('error', { error: error });
+  };
 };

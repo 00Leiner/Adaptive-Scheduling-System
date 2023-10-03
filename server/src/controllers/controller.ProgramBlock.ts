@@ -27,6 +27,7 @@ export async function createProgramBlockController(req: Request, res: Response){
     res.status(201).json({ programBlock: savedProgramBlock });
   } catch (error) {
     res.status(500).json({ error });
+    res.render('error', { error: error });
   }
 };
 
@@ -42,6 +43,7 @@ export async function readProgramBlockController(req: Request, res: Response){
       
   } catch (error) {
     res.status(500).json({ error });
+    res.render('error', { error: error });
   }
 };
 
@@ -53,6 +55,7 @@ export async function readAllProgramBlockController(req: Request, res: Response)
     res.status(200).json({ programBlocks }); // Send the program blocks in the response
   } catch (error) {
     res.status(500).json({ error }); // Handle errors and send an error response
+    res.render('error', { error: error });
   }
 };
 
@@ -72,6 +75,7 @@ export async function updateProgramBlockController(req: Request, res: Response){
 
       }catch (error) {
         res.status(500).json({ error });
+        res.render('error', { error: error });
       }
 };
 
@@ -82,5 +86,8 @@ export async function deleteProgramBlockController(req: Request, res: Response){
       return await ProgramBlock.findByIdAndDelete(programBlockID) 
           ? res.status(201).send()
           : res.status(404).json({ message: " Not found" })
-  }catch(error){ res.status(500).json({ error })};
+  }catch(error){ 
+    res.status(500).json({ error })
+  res.render('error', { error: error });
+};
 };
