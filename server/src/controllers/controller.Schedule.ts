@@ -84,6 +84,7 @@ export async function updateScheduleController(req: Request, res: Response){
 
   }catch(error) {
     res.status(500).json({ error })// error
+    res.render('error', { error: error });
   }; 
 };
 
@@ -97,5 +98,6 @@ export async function deleteScheduleController(req: Request, res: Response){
         : res.status(404).json({ message: " Not found" })
     }catch(error){
       res.status(500).json({ error });
+      res.render('error', { error: error });
     };
 };
